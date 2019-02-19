@@ -361,3 +361,17 @@ for (let filterName in filterNames) {
 for (let i = 0; i < 7; i++) {
   renderCards(tasksContainer, cardTemplate);
 }
+
+const filters = document.querySelectorAll(`.filter__input`);
+
+filters.forEach((filter) => {
+  filter.addEventListener(`click`, (e) => {
+    e.preventDefault;
+    tasksContainer.innerHTML = ``;
+
+    for (let i = 0; i < randomInt(1, 7); i++) {
+      renderCards(tasksContainer, cardTemplate);
+    }
+
+  });
+});
