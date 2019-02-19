@@ -1,4 +1,4 @@
-`use strict`
+`use strict`;
 
 const filterContainer = document.querySelector(`.main__filter`);
 const tasksContainer = document.querySelector(`.board__tasks`);
@@ -352,7 +352,7 @@ const renderFilter = (container, filter) => {
 
   template.innerHTML = fragment;
   container.appendChild(template.content.cloneNode(true));
-}
+};
 
 for (let filterName in filterNames) {
   renderFilter(filterContainer, filterNames[filterName]);
