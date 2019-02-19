@@ -1,3 +1,4 @@
+`use strict`
 
 const filterContainer = document.querySelector(`.main__filter`);
 const tasksContainer = document.querySelector(`.board__tasks`);
@@ -5,32 +6,31 @@ const tasksContainer = document.querySelector(`.board__tasks`);
 const filterNames = [`All`, `Overdue`, `Today`, `Favorites`, `Repeating`, `Tags`, `Archive`];
 
 // На будущее создал объект под поля карточек
-const cardData = {
-  isEdit: false,
-  isRepeat: false,
-  description: ``,
-  isDeadline: true,
-  deadlineDate: ``,
-  deadlineTime: ``,
-  repeatDays: {
-    isMo: false,
-    isTu: false,
-    isWe: false,
-    isTh: true,
-    isFr: false,
-    isSa: false,
-    isSu: false
-  },
-  hashtags: [`cinema`, `repeat`, `weather`],
-  color: {
-    black: false,
-    yellow: false,
-    blue: false,
-    green: true,
-    pink: false,
-  }
-}
-
+// const cardData = {
+//   isEdit: false,
+//   isRepeat: false,
+//   description: ``,
+//   isDeadline: true,
+//   deadlineDate: ``,
+//   deadlineTime: ``,
+//   repeatDays: {
+//     isMo: false,
+//     isTu: false,
+//     isWe: false,
+//     isTh: true,
+//     isFr: false,
+//     isSa: false,
+//     isSu: false
+//   },
+//   hashtags: [`cinema`, `repeat`, `weather`],
+//   color: {
+//     black: false,
+//     yellow: false,
+//     blue: false,
+//     green: true,
+//     pink: false,
+//   }
+// }
 
 const cardTemplate = `<article class="card card--yellow card--repeat">
 <form class="card__form" method="get">
@@ -327,17 +327,17 @@ Here is a card with filled data</textarea
 </form>
 </article>`;
 
-const randomInt = (min, max) => Math.round((Math.random() * (max - min) + min))
+const randomInt = (min, max) => Math.round((Math.random() * (max - min) + min));
 
 const renderCards = (container, fragment) => {
-  const template = document.createElement('template')
+  const template = document.createElement(`template`);
 
   template.innerHTML = fragment;
   container.appendChild(template.content.cloneNode(true));
-}
+};
 
 const renderFilter = (container, filter) => {
-  const template = document.createElement('template')
+  const template = document.createElement(`template`);
   const fragment = `
   <input
     type="radio"
@@ -355,9 +355,9 @@ const renderFilter = (container, filter) => {
 }
 
 for (let filterName in filterNames) {
-  renderFilter(filterContainer, filterNames[filterName])
+  renderFilter(filterContainer, filterNames[filterName]);
 }
 
 for (let i = 0; i < 7; i++) {
-  renderCards(tasksContainer, cardTemplate)
+  renderCards(tasksContainer, cardTemplate);
 }
