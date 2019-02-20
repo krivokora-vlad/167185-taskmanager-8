@@ -1,4 +1,4 @@
-`use strict`;
+'use strict';
 
 const filterContainer = document.querySelector(`.main__filter`);
 const tasksContainer = document.querySelector(`.board__tasks`);
@@ -338,7 +338,6 @@ const renderFilter = (container, nameFilter) => {
     id="filter__all"
     class="filter__input visually-hidden"
     name="filter"
-    checked
   />
   <label for="filter__all" class="filter__label">
     ${nameFilter} <span class="filter__all-count">${getRandomInt(0, 20)}</span></label
@@ -346,19 +345,17 @@ const renderFilter = (container, nameFilter) => {
   container.insertAdjacentHTML(`beforeend`, fragment);
 };
 
-for (let filterName in filterNames) {
-  renderFilter(filterContainer, filterNames[filterName]);
-}
+filterNames.forEach(filterName => renderFilter(filterContainer, filterName))
 
 for (let i = 0; i < 7; i++) {
   renderCards(tasksContainer, cardTemplate);
 }
 
-const filters = document.querySelectorAll(`.filter__input`);
+const filters = document.querySelectorAll(`.filter__label`);
 
 filters.forEach((filter) => {
   filter.addEventListener(`click`, (e) => {
-    e.preventDefault;
+    e.preventDefault();
     tasksContainer.innerHTML = ``;
 
     for (let i = 0; i < getRandomInt(1, 7); i++) {
