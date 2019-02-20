@@ -351,13 +351,9 @@ for (let i = 0; i < 7; i++) {
   renderCards(tasksContainer, cardTemplate);
 }
 
-const filters = document.querySelectorAll(`.filter__input`);
-
-filters.forEach((filter) => {
-  filter.addEventListener(`change`, () => {
-    tasksContainer.innerHTML = ``;
-    for (let i = 0; i < getRandomInt(1, 7); i++) {
-      renderCards(tasksContainer, cardTemplate);
-    }
-  });
-});
+filterContainer.onchange = function () {
+  tasksContainer.innerHTML = ``;
+  for (let i = 0; i < getRandomInt(1, 7); i++) {
+    renderCards(tasksContainer, cardTemplate);
+  }
+};
