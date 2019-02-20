@@ -335,32 +335,29 @@ const renderFilter = (container, nameFilter) => {
   const fragment = `
   <input
     type="radio"
-    id="filter__all"
+    id="filter__${nameFilter.toLowerCase()}"
     class="filter__input visually-hidden"
     name="filter"
   />
-  <label for="filter__all" class="filter__label">
-    ${nameFilter} <span class="filter__all-count">${getRandomInt(0, 20)}</span></label
+  <label for="filter__${nameFilter.toLowerCase()}" class="filter__label">
+    ${nameFilter} <span class="filter__${nameFilter.toLowerCase()}-count">${getRandomInt(0, 20)}</span></label
   >`;
   container.insertAdjacentHTML(`beforeend`, fragment);
 };
 
-filterNames.forEach(filterName => renderFilter(filterContainer, filterName))
+filterNames.forEach((filterName) => renderFilter(filterContainer, filterName));
 
 for (let i = 0; i < 7; i++) {
   renderCards(tasksContainer, cardTemplate);
 }
 
-const filters = document.querySelectorAll(`.filter__label`);
+const filters = document.querySelectorAll(`.filter__input`);
 
 filters.forEach((filter) => {
-  filter.addEventListener(`click`, (e) => {
-    e.preventDefault();
+  filter.addEventListener(`change`, () => {
     tasksContainer.innerHTML = ``;
-
     for (let i = 0; i < getRandomInt(1, 7); i++) {
       renderCards(tasksContainer, cardTemplate);
     }
-
   });
 });
