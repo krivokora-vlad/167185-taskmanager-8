@@ -327,17 +327,11 @@ Here is a card with filled data</textarea
 </form>
 </article>`;
 
-const randomInt = (min, max) => Math.round((Math.random() * (max - min) + min));
+const getRandomInt = (min, max) => Math.round((Math.random() * (max - min) + min));
 
-const renderCards = (container, fragment) => {
-  const template = document.createElement(`template`);
+const renderCards = (container, fragment) => container.insertAdjacentHTML(`beforeend`, fragment);
 
-  template.innerHTML = fragment;
-  container.appendChild(template.content.cloneNode(true));
-};
-
-const renderFilter = (container, filter) => {
-  const template = document.createElement(`template`);
+const renderFilter = (container, nameFilter) => {
   const fragment = `
   <input
     type="radio"
@@ -347,11 +341,9 @@ const renderFilter = (container, filter) => {
     checked
   />
   <label for="filter__all" class="filter__label">
-    ${filter} <span class="filter__all-count">${randomInt(0, 20)}</span></label
+    ${nameFilter} <span class="filter__all-count">${getRandomInt(0, 20)}</span></label
   >`;
-
-  template.innerHTML = fragment;
-  container.appendChild(template.content.cloneNode(true));
+  container.insertAdjacentHTML(`beforeend`, fragment);
 };
 
 for (let filterName in filterNames) {
@@ -369,7 +361,7 @@ filters.forEach((filter) => {
     e.preventDefault;
     tasksContainer.innerHTML = ``;
 
-    for (let i = 0; i < randomInt(1, 7); i++) {
+    for (let i = 0; i < getRandomInt(1, 7); i++) {
       renderCards(tasksContainer, cardTemplate);
     }
 
