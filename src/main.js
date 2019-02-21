@@ -351,9 +351,9 @@ for (let i = 0; i < 7; i++) {
   renderCards(tasksContainer, cardTemplate);
 }
 
-filterContainer.onchange = function () {
+filterContainer.addEventListener(`change`, () => {
   tasksContainer.innerHTML = ``;
   for (let i = 0; i < getRandomInt(1, 7); i++) {
     renderCards(tasksContainer, cardTemplate);
   }
-};
+});
