@@ -43,7 +43,7 @@ const renderFilter = (nameFilter, checked) => {
   filterContainer.insertAdjacentHTML(`beforeend`, fragment);
 };
 
-filterNames.forEach((filterName, index) => renderFilter(filterName, index === 0 ? true : false));
+filterNames.forEach((filterName, index) => renderFilter(filterName, index === 0));
 
 for (let i = 0; i < 7; i++) {
   renderCards(makeTask());
