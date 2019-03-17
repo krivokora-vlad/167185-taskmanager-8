@@ -1,6 +1,8 @@
+import makeTask from './make-task.js';
+import makeFilter from './make-filter.js';
+
 const filterContainer = document.querySelector(`.main__filter`);
 const tasksContainer = document.querySelector(`.board__tasks`);
-
 const filterNames = [`All`, `Overdue`, `Today`, `Favorites`, `Repeating`, `Tags`, `Archive`];
 
 // На будущее создал объект под поля карточек
@@ -32,27 +34,24 @@ const filterNames = [`All`, `Overdue`, `Today`, `Favorites`, `Repeating`, `Tags`
 
 // cardTemplate
 
-import makeTask from './make-task.js';
-import makeFilter from './make-filter.js';
-
 const getRandomInt = (min, max) => Math.round((Math.random() * (max - min) + min));
 
-const renderCards = (container, fragment) => container.insertAdjacentHTML(`beforeend`, fragment);
+const renderCards = (fragment) => tasksContainer.insertAdjacentHTML(`beforeend`, fragment);
 
-const renderFilter = (container, nameFilter, checked) => {
+const renderFilter = (nameFilter, checked) => {
   const fragment = makeFilter(nameFilter, getRandomInt(0, 20), checked);
-  container.insertAdjacentHTML(`beforeend`, fragment);
+  filterContainer.insertAdjacentHTML(`beforeend`, fragment);
 };
 
-filterNames.forEach((filterName, index) => renderFilter(filterContainer, filterName, index === 0 ? true : false));
+filterNames.forEach((filterName, index) => renderFilter(filterName, index === 0 ? true : false));
 
 for (let i = 0; i < 7; i++) {
-  renderCards(tasksContainer, makeTask);
+  renderCards(makeTask());
 }
 
 filterContainer.addEventListener(`change`, () => {
   tasksContainer.innerHTML = ``;
   for (let i = 0; i < getRandomInt(1, 7); i++) {
-    renderCards(tasksContainer, makeTask);
+    renderCards(makeTask());
   }
 });
